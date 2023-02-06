@@ -1,0 +1,49 @@
+<header>
+  <div #top></div>
+  <nav
+    class="navbar navbar-expand-lg shadow-sm w-100 bg-white position-fixed py-2"
+  >
+    <div class="container-fluid">
+      <a [routerLink]="''">
+        <img [src]="logo" alt="logo" class="logo" width="auto" height="auto" />
+      </a>
+      <div class="d-none d-lg-flex align-items-center flex-grow-1">
+        <app-menu
+          [ngClass]="'ms-auto'"
+          [navClass]="'menu mb-0'"
+          [scrollTop]="top"
+          [linkClass]="'text-dark text-warning-hover'"
+          [menu]="menu"
+          [isMobile]="false"
+        >
+        </app-menu>
+      </div>
+    </div>
+  </nav>
+  <div class="modal fade" id="menu-mobile" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog mw-100 m-0">
+      <div class="modal-content bg-primary border-0 rounded-0 vh-100">
+        <div class="modal-header border-0">
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div
+          class="modal-body d-flex align-items-center justify-content-center"
+        >
+          <app-menu
+            [navClass]="'menu menu-mobile list-unstyled text-center'"
+            [scrollTop]="top"
+            [linkClass]="'text-white fs-3'"
+            [menu]="menuMobile"
+            [isMobile]="true"
+          >
+          </app-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

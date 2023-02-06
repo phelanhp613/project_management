@@ -1,0 +1,13 @@
+@import 'helper';
+
+header {
+  width: 100%;
+
+  .navbar {
+    z-index: $zindex-fixed;
+  }
+
+  .logo {
+    max-width: 10rem;
+  }
+}
