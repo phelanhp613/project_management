@@ -1,18 +1,23 @@
-<header>
+<header class="position-fixed top-0">
   <div #top></div>
   <nav
-    class="navbar navbar-expand-lg shadow-sm w-100 bg-white position-fixed py-2"
+    class="navbar navbar-expand-lg shadow-sm w-100 bg-white py-2"
   >
     <div class="container-fluid">
       <a [routerLink]="''">
-        <img [src]="logo" alt="logo" class="logo" width="auto" height="auto" />
+        <ng-container *ngIf="logo != ''">
+          <img [src]="logo" alt="logo" class="logo" width="auto" height="auto" />
+        </ng-container>
+        <ng-container *ngIf="logo == ''">
+          <h4 class="fw-bolder mb-0">LOGO</h4>
+        </ng-container>
       </a>
       <div class="d-none d-lg-flex align-items-center flex-grow-1">
         <app-menu
           [ngClass]="'ms-auto'"
           [navClass]="'menu mb-0'"
           [scrollTop]="top"
-          [linkClass]="'text-dark text-warning-hover'"
+          [linkClass]="'text-warning-hover'"
           [menu]="menu"
           [isMobile]="false"
         >

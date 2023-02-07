@@ -1,0 +1,25 @@
+<div class="left-sidebar position-relative">
+  <div class="inside vh-100 border-end bg-dark position-fixed top-0 start-0">
+    <div class="logo px-2 py-3 border-bottom border-light">
+      <a [routerLink]="''">
+        <ng-container *ngIf="logo != ''">
+          <img [src]="logo" alt="logo" class="logo" width="auto" height="auto" />
+        </ng-container>
+        <ng-container *ngIf="logo == ''">
+          <h4 class="fw-bolder mb-0">LOGO</h4>
+        </ng-container>
+      </a>
+    </div>
+    <ul [class]="'list-unstyled py-5 px-2'">
+      <li *ngFor="let item of menu" class="pb-2">
+        <a
+          [routerLink]="[item.url]"
+          [class]="'text-white text-secondary-hover fs-xl-3 fs-md-4'"
+          routerLinkActive="text-warning"
+        >
+          {{ item.label | translate }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

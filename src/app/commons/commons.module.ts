@@ -6,6 +6,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { RouterLinkActive, RouterLinkWithHref } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 import { FooterComponent } from './components/footer/footer.component';
+import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 
 
 
@@ -15,11 +16,13 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderComponent,
     MenuComponent,
     FooterComponent,
+    LeftSidebarComponent,
   ],
   exports: [
     TimelineTabComponent,
     HeaderComponent,
     FooterComponent,
+    LeftSidebarComponent,
   ],
   imports: [
     CommonModule,

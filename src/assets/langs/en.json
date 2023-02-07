@@ -7,7 +7,8 @@
   "lgShowMore": "Show More",
   "lgBackHome": "Back to homepage",
   "lgMenu": {
-    "lgTop": "Top",
+    "lgHome": "Home",
+    "lgProjectManagement": "Project Management",
     "lgAboutUs": "About Us"
   }
 }

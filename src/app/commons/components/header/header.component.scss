@@ -2,9 +2,11 @@
 
 header {
   width: 100%;
+  height: $headerHeight;
+  z-index: $zindex-fixed;
 
   .navbar {
-    z-index: $zindex-fixed;
+    height: $headerHeight;
   }
 
   .logo {

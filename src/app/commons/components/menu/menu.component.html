@@ -1,8 +1,7 @@
 <ul [class]="navClass + ' ps-0'" *ngIf="isMobile">
   <li *ngFor="let item of menu" class="d-block fw-bold mb-4 p-0">
     <a
-      [routerLink]="['']"
-      [queryParams]="{ section: item.url, mobile: true }"
+      [routerLink]="[item.url]"
       [class]="linkClass"
       data-bs-dismiss="modal"
       routerLinkActive="text-warning"
@@ -14,11 +13,9 @@
 <ul [class]="navClass + ' ps-0'" *ngIf="!isMobile">
   <li *ngFor="let item of menu" class="d-inline-block ps-lg-3 ps-xl-4">
     <a
-      [routerLink]="['']"
-      [queryParams]="{ section: item.url }"
+      [routerLink]="[item.url]"
       [class]="linkClass + ' fs-xl-3 fs-md-4 fw-semibold'"
-      routerLinkActive="text-warning"
-    >
+      routerLinkActive="text-warning"><!--[routerLinkActiveOptions]="{ exact: true }"-->
       {{ item.label | translate }}
     </a>
   </li>

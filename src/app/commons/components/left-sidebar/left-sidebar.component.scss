@@ -1,0 +1,13 @@
+@import "helper";
+
+.left-sidebar{
+  width: calPxToRem(256);
+  .inside {
+    width: calPxToRem(256);
+    z-index: $zindex-offcanvas;
+    .logo {
+      height: $headerHeight;
+      color: red;
+    }
+  }
+}

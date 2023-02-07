@@ -14,7 +14,7 @@ $theme-colors: (
 );
 
 $utilities: (
-  'bg': (
+  'background': (
     property: background-color,
     class: 'bg',
     values: (
@@ -23,30 +23,49 @@ $utilities: (
   ),
 );
 
-$utilities: map_merge(
-  $utilities,
-  (
-    'font-weight': (
-      responsive: true,
-      property: font-weight,
-      class: 'fw',
-      values: (
-        normal: $font-weight-normal,
-        medium: $font-weight-medium,
-        semibold: $font-weight-semi-bold,
-        bold: $font-weight-bold,
-        bolder: $font-weight-bolder,
-      ),
-    ),
-  )
-);
-
 $utilities: (
-  'color': (
+  'text': (
     property: color,
     class: text,
     values: $theme-colors
   )
+);
+
+$utilities: map_merge(
+    $utilities,
+    (
+      'text': (
+        property: color,
+        class: 'text',
+        state: hover,
+        values: (
+          primary: $primary,
+          warning: $warning,
+          danger: $danger,
+          info: $info,
+          secondary: $secondary,
+          dark: $dark,
+        ),
+      ),
+    )
+);
+
+$utilities: map_merge(
+    $utilities,
+    (
+      'font-weight': (
+        responsive: true,
+        property: font-weight,
+        class: 'fw',
+        values: (
+          normal: $font-weight-normal,
+          medium: $font-weight-medium,
+          semibold: $font-weight-semi-bold,
+          bold: $font-weight-bold,
+          bolder: $font-weight-bolder,
+        ),
+      ),
+    )
 );
 
 $utilities: map_merge(
