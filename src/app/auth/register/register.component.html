@@ -1,0 +1,60 @@
+<div class="py-5">
+  <h2 class="text-center mb-4">{{ 'Sign Up' | translate }}</h2>
+  <div class="alert alert-danger" role="alert" *ngIf="backendErrors.length > 0">
+    <div *ngFor="let errors of backendErrors; let i = index">{{ errors | translate}}</div>
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="backendSuccess.length != ''">{{ backendSuccess | translate }}</div>
+  <form
+    (ngSubmit)="onSubmit($event)"
+    #ngForm="ngForm"
+    [formGroup]="formGroup"
+    novalidate
+  >
+    <div class="mb-3">
+      <label for="name" translate="">Name <span class="text-danger">*</span>
+      </label>
+      <input type="text" class="form-control" id="name" formControlName="name" required>
+      <div *ngIf="submitted && formInfo['name'].errors">
+                    <span *ngIf="formInfo['name'].errors['required']" class="text-danger" translate="">
+                      The name field is required.
+                    </span>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="phone" translate="">Phone <span class="text-danger">*</span></label>
+      <input type="tel" class="form-control" id="phone" formControlName="phone">
+      <div *ngIf="submitted && formInfo['phone'].errors">
+                    <span *ngIf="formInfo['phone'].errors['required']" class="text-danger" translate="">
+                      The phone field is required.
+                    </span>
+        <span *ngIf="formInfo['phone'].errors['minlength'] || formInfo['phone'].errors['maxlength']" class="text-danger" translate="">
+                      The phone must be 10 characters.
+                    </span>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" translate="">Email <span class="text-danger">*</span></label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div *ngIf="submitted && formInfo['email'].errors">
+                    <span *ngIf="formInfo['email'].errors['required']" class="text-danger" translate="">
+                      The email field is required.
+                    </span>
+        <span *ngIf="formInfo['email'].errors['email']" class="text-danger" translate="">
+                      The email must be a valid email address.
+                    </span>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" translate="">Password <span class="text-danger">*</span></label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div *ngIf="submitted && formInfo['password'].errors">
+                    <span *ngIf="formInfo['password'].errors['required']" class="text-danger" translate="">
+                      The password field is required.
+                    </span>
+      </div>
+    </div>
+    <div class="text-center py-3">
+      <button type="submit" class="btn btn-primary rounded-0 w-100" [disabled]="btnDisable" translate="">Register</button>
+    </div>
+  </form>
+</div>

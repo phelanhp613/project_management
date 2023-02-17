@@ -7,10 +7,12 @@ import { LoadingBarModule } from "@ngx-loading-bar/core";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from "../environments/environment";
+import { AuthInterceptorProviders } from "./interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,7 +21,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     LoadingBarModule,
     HttpClientModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
+      defaultLanguage: environment.lang,
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,
@@ -27,7 +29,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
       },
     }),
   ],
-  providers: [],
+  providers: [
+    AuthInterceptorProviders,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule{}

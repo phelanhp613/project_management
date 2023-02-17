@@ -7,6 +7,8 @@ import { RouterLinkActive, RouterLinkWithHref } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 import { FooterComponent } from './components/footer/footer.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
+import { AuthHeaderComponent } from './components/header/auth-header/auth-header.component';
+import { NotifyComponent } from './components/notify/notify.component';
 
 
 
@@ -17,13 +19,16 @@ import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.com
     MenuComponent,
     FooterComponent,
     LeftSidebarComponent,
+    AuthHeaderComponent,
+    NotifyComponent,
   ],
-  exports: [
-    TimelineTabComponent,
-    HeaderComponent,
-    FooterComponent,
-    LeftSidebarComponent,
-  ],
+    exports: [
+        TimelineTabComponent,
+        HeaderComponent,
+        FooterComponent,
+        LeftSidebarComponent,
+        NotifyComponent,
+    ],
   imports: [
     CommonModule,
     RouterLinkWithHref,

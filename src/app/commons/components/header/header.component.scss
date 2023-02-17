@@ -9,7 +9,10 @@ header {
     height: $headerHeight;
   }
 
-  .logo {
-    max-width: 10rem;
+  .logo-header {
+    width: calPxToRem(256);
+    .logo {
+      max-width: 10rem;
+    }
   }
 }

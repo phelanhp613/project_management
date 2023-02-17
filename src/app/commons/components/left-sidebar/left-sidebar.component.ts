@@ -13,7 +13,7 @@ export class LeftSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.menu = [
-      { url: '/project-management', label: 'lgMenu.lgProjectManagement' },
+      { url: '/project-management', label: 'Project Management' },
     ];
   }
 

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
-import { ProjectManagementListingComponent } from "./project-management/project-management-listing/project-management-listing.component";
 import { HomeComponent } from "./home/home.component";
-import { ProjectManagementDetailComponent } from "./project-management/project-management-detail/project-management-detail.component";
 import { ProjectManagementComponent } from "./project-management/project-management.component";
+import { ProjectManagementListingComponent } from "./project-management/project-management-listing/project-management-listing.component";
+import { ProjectManagementDetailComponent } from "./project-management/project-management-detail/project-management-detail.component";
+import { AuthGuard } from "../auth/auth.guard";
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
         path: 'detail/:id',
         component: ProjectManagementDetailComponent,
       },
-    ]
+    ],
+    canActivate: [AuthGuard],
   },
 ];
 
@@ -35,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PagesRoutingModule {}
+export class FrontendRoutingModule {}

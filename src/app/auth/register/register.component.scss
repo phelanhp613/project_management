@@ -1,0 +1,21 @@
+@import "helper";
+
+label {
+  font-weight: $font-weight-semi-bold;
+}
+
+.card {
+  max-width: calPxToRem(800);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  form.ng-submitted {
+    .ng-invalid {
+      border: 1px solid red;
+    }
+  }
+}

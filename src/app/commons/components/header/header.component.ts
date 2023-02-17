@@ -8,16 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   logo: string = '';
   menu: any = [];
-  menuMobile: any = [];
 
   constructor() {}
 
   public ngOnInit(): void {
     this.menu = [
-      { url: 'project-management', label: 'lgMenu.lgProjectManagement' },
-    ];
-    this.menuMobile = [
-      { url: 'project-management', label: 'lgMenu.lgProjectManagement' },
+      { url: 'project-management', label: 'Project Management' },
     ];
   }
 }

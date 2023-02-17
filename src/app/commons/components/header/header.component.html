@@ -4,51 +4,30 @@
     class="navbar navbar-expand-lg shadow-sm w-100 bg-white py-2"
   >
     <div class="container-fluid">
-      <a [routerLink]="''">
-        <ng-container *ngIf="logo != ''">
-          <img [src]="logo" alt="logo" class="logo" width="auto" height="auto" />
-        </ng-container>
-        <ng-container *ngIf="logo == ''">
-          <h4 class="fw-bolder mb-0">LOGO</h4>
-        </ng-container>
-      </a>
-      <div class="d-none d-lg-flex align-items-center flex-grow-1">
+      <div class="logo-header">
+        <a [routerLink]="''">
+          <ng-container *ngIf="logo != ''">
+            <img [src]="logo" alt="logo" class="logo" width="auto" height="auto" />
+          </ng-container>
+          <ng-container *ngIf="logo == ''">
+            <h4 class="fw-bolder mb-0">LOGO</h4>
+          </ng-container>
+        </a>
+      </div>
+      <div class="border-start d-flex align-items-center flex-grow-1 px-3">
         <app-menu
-          [ngClass]="'ms-auto'"
+          [ngClass]="''"
           [navClass]="'menu mb-0'"
           [scrollTop]="top"
-          [linkClass]="'text-warning-hover'"
+          [linkClass]="'text-info-hover'"
           [menu]="menu"
           [isMobile]="false"
         >
         </app-menu>
       </div>
-    </div>
-  </nav>
-  <div class="modal fade" id="menu-mobile" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog mw-100 m-0">
-      <div class="modal-content bg-primary border-0 rounded-0 vh-100">
-        <div class="modal-header border-0">
-          <button
-            type="button"
-            class="btn-close btn-close-white"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div
-          class="modal-body d-flex align-items-center justify-content-center"
-        >
-          <app-menu
-            [navClass]="'menu menu-mobile list-unstyled text-center'"
-            [scrollTop]="top"
-            [linkClass]="'text-white fs-3'"
-            [menu]="menuMobile"
-            [isMobile]="true"
-          >
-          </app-menu>
-        </div>
+      <div>
+        <app-auth-header></app-auth-header>
       </div>
     </div>
-  </div>
+  </nav>
 </header>

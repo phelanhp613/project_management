@@ -1,0 +1,5 @@
+<div class="border-start d-flex align-items-center px-3">
+  <a [routerLink]="route.signIn" class="me-3" translate="" *ngIf="!loggedIn">Sign In</a>
+  <a [routerLink]="route.signUp" class="btn btn-outline-primary" translate="" *ngIf="!loggedIn">Sign Up</a>
+  <a href="javascript:" (click)="signOut()" class="ms-3" translate="" *ngIf="loggedIn">Sign Out</a>
+</div>

@@ -1,0 +1,11 @@
+@import "helper";
+.card {
+  max-width: calPxToRem(1000);
+  min-height: calPxToRem(690);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
