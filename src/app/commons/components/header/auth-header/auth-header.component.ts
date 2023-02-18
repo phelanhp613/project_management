@@ -3,6 +3,7 @@ import { AuthService } from "../../../../services/auth.service";
 import { Router } from "@angular/router";
 import { NotifyService } from "../../notify/notify.service";
 import { GlobalComponent } from "../../global-component";
+import { TokenStorageService } from "../../../../services/token-storage.service";
 
 @Component({
   selector: 'app-auth-header',
@@ -12,11 +13,13 @@ import { GlobalComponent } from "../../global-component";
 export class AuthHeaderComponent implements OnInit {
   loggedIn: boolean = false;
   route: any;
+  user: any = [];
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private notifyService: NotifyService,
+    private tokenStorageService: TokenStorageService,
   ) {
     this.route = GlobalComponent.route;
   }
@@ -24,6 +27,7 @@ export class AuthHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.loggedIn = this.authService.isLoggedIn();
     this.authService.checkLoggedIn().subscribe((response: any) => {
+      this.user = this.tokenStorageService.getUser();
       this.loggedIn = response.isLoggedIn;
     });
   }

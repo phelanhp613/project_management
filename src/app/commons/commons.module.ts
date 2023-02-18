@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 import { AuthHeaderComponent } from './components/header/auth-header/auth-header.component';
 import { NotifyComponent } from './components/notify/notify.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
@@ -21,6 +22,7 @@ import { NotifyComponent } from './components/notify/notify.component';
     LeftSidebarComponent,
     AuthHeaderComponent,
     NotifyComponent,
+    PaginationComponent,
   ],
     exports: [
         TimelineTabComponent,
@@ -28,6 +30,7 @@ import { NotifyComponent } from './components/notify/notify.component';
         FooterComponent,
         LeftSidebarComponent,
         NotifyComponent,
+        PaginationComponent,
     ],
   imports: [
     CommonModule,

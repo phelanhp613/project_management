@@ -13,6 +13,10 @@ export const environment = {
         listing: "/user/list",
         crud: "/user"
       },
+      project: {
+        listing: "/project/listing",
+        crud: "/project"
+      }
     },
   },
 };

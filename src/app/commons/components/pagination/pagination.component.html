@@ -1,0 +1,8 @@
+<nav aria-label="navigation" *ngIf="pagination.length > 0">
+  <ul class="pagination">
+    <li class="page-item {{ item.disable ? 'disabled' : null }} {{ item.isCurrent ? 'active' : null }}" *ngFor="let item of pagination">
+      <a href="javascript:" type="button" class="page-link" *ngIf="(item.disable || item.isCurrent)">{{ item.title }}</a>
+      <a [routerLink]="[item.url]" [queryParams]="{page: item.page}" type="button" class="page-link" *ngIf="!(item.disable || item.isCurrent)">{{ item.title }}</a>
+    </li>
+  </ul>
+</nav>

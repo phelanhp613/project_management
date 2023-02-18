@@ -1,0 +1,6 @@
+@import "helper";
+
+.dropdown-menu {
+  left: inherit;
+  right: calPxToRem(-24);
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { ProjectService } from "../../../services/project.service";
 
 @Component({
   selector: 'app-project-management-detail',
@@ -7,21 +8,20 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./project-management-detail.component.scss']
 })
 export class ProjectManagementDetailComponent implements OnInit {
-
+  data: any = [];
   constructor(
     private activatedRoute: ActivatedRoute,
+    private projectService: ProjectService,
     ) { }
 
   ngOnInit(): void {
     this.getDetail();
   }
-  getDetail() {
-    this.activatedRoute.params.subscribe((request: any) => {
-      const params = {
-        id: request.id
-      };
 
-      console.log(params);
-    });
+  getDetail() {
+    const request = this.activatedRoute.snapshot.params;
+    this.projectService.getDetail(request['id']).subscribe((response: any) => {
+      this.data = response;
+    })
   }
 }

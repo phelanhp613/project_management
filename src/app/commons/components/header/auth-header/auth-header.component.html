@@ -1,5 +1,12 @@
-<div class="border-start d-flex align-items-center px-3">
+<div class="border-start d-flex align-items-center px-3 position-relative">
+  <div class="dropdown" *ngIf="loggedIn">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {{ this.user.name }}
+    </a>
+    <ul class="dropdown-menu shadow-sm">
+      <li><a href="javascript:" (click)="signOut()" class="dropdown-item">Sign Out</a></li>
+    </ul>
+  </div>
   <a [routerLink]="route.signIn" class="me-3" translate="" *ngIf="!loggedIn">Sign In</a>
   <a [routerLink]="route.signUp" class="btn btn-outline-primary" translate="" *ngIf="!loggedIn">Sign Up</a>
-  <a href="javascript:" (click)="signOut()" class="ms-3" translate="" *ngIf="loggedIn">Sign Out</a>
 </div>
