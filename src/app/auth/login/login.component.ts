@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
           /*if(response.data.role) {
            this.notifyService.success("U are admin");
            } else {*/
-          this.authService.profile().subscribe();
           this.router.navigate(['']);
           // }
         } else {

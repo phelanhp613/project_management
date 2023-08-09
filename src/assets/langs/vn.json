@@ -34,5 +34,9 @@
   "The password field is required.": "Mật khẩu không được để trống",
   "Not account yet?": "Chưa có tài khoản?",
   "Create an account.": "Tạo tài khoản.",
-  "Email & Password does not match with our record.": "Email hoặc mật khẩu không đúng."
+  "Email & Password does not match with our record.": "Email hoặc mật khẩu không đúng.",
+  "Collaborators": "Thành viên",
+  "Role": "Chức vụ",
+  "Leader": "Nhóm trưởng",
+  "Member": "Thành viên"
 }

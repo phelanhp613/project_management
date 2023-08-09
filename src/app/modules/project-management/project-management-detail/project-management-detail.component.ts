@@ -22,6 +22,8 @@ export class ProjectManagementDetailComponent implements OnInit {
     const request = this.activatedRoute.snapshot.params;
     this.projectService.getDetail(request['id']).subscribe((response: any) => {
       this.data = response;
+
+      console.log(this.data);
     })
   }
 }

@@ -14,21 +14,21 @@
       <label for="email" translate="">Email <span class="text-danger">*</span></label>
       <input type="email" class="form-control" id="email" formControlName="email">
       <div *ngIf="submitted && formInfo['email'].errors">
-                    <span *ngIf="formInfo['email'].errors['required']" class="text-danger" translate="">
-                      The email field is required.
-                    </span>
+        <span *ngIf="formInfo['email'].errors['required']" class="text-danger" translate="">
+          The email field is required.
+        </span>
         <span *ngIf="formInfo['email'].errors['email']" class="text-danger" translate="">
-                      The email must be a valid email address.
-                    </span>
+          The email must be a valid email address.
+        </span>
       </div>
     </div>
     <div class="mb-3">
       <label for="password" translate="">Password <span class="text-danger">*</span></label>
-      <input type="password" class="form-control" id="password" formControlName="password">
+      <input type="password" class="form-control" id="password" formControlName="password" autocomplete="off">
       <div *ngIf="submitted && formInfo['password'].errors">
-                    <span *ngIf="formInfo['password'].errors['required']" class="text-danger" translate="">
-                      The password field is required.
-                    </span>
+        <span *ngIf="formInfo['password'].errors['required']" class="text-danger" translate="">
+          The password field is required.
+        </span>
       </div>
     </div>
     <div class="text-center py-3">

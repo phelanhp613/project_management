@@ -27,8 +27,10 @@
     "@ngx-loading-bar/http-client": "~6.0.2",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "~7.0.0",
+    "@sweetalert2/ngx-sweetalert2": "^12.2.0",
     "bootstrap": "~5.2.0",
     "rxjs": "~7.5.0",
+    "sweetalert2": "^11.7.20",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

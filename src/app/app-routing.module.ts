@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ModulesModule } from "./modules/modules.module";
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./frontend/frontend.module').then(
-        (m) => m.FrontendModule
+      import('./modules/modules.module').then(
+        (m) => m.ModulesModule
       ),
   },
   {

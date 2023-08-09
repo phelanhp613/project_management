@@ -1,0 +1,47 @@
+<div class="project-management-detail container">
+  <div class="breadcrumb">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" translate="">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="'/project-management'" translate="">Project Listing</a></li>
+        <li class="breadcrumb-item active" aria-current="page" translate="">Project Detail</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="content">
+    <h2 class="project-title">{{ data.title }}</h2>
+    <div class="project-progress py-3">
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Example with label" style="width: {{ data.progress ?? 0 }}%;" aria-valuemin="0" aria-valuemax="100">{{ data.progress ?? 100 }}%</div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <ul class="nav nav-pills mb-3" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="work-route-tab" data-bs-toggle="pill" data-bs-target="#work-route" type="button" role="tab" aria-controls="work-route" aria-selected="true" translate="">Work Route</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="collaborator-listing-tab" data-bs-toggle="pill" data-bs-target="#collaborator-listing" type="button" role="tab" aria-controls="collaborator-listing" aria-selected="false" translate="">Collaborators</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="description-tab" data-bs-toggle="pill" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false" translate="">Description</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="project-detail-tab-content">
+        <div id="work-route" class="tab-pane fade show active" role="tabpanel" aria-labelledby="work-route-tab">
+          <app-project-work-route></app-project-work-route>
+        </div>
+        <div id="collaborator-listing" class="tab-pane fade" role="tabpanel" aria-labelledby="collaborator-listing-tab">
+          <app-project-collaborator-listing [data]="data.collaborators ?? []"></app-project-collaborator-listing>
+        </div>
+        <div id="description" class="tab-pane fade" role="tabpanel" aria-labelledby="description-tab">
+          <h3 class="text-primary" translate="">Description</h3>
+          <div class="content">
+            {{ data.description }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

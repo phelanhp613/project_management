@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ProjectService } from "../../../services/project.service";
 import { GlobalComponent } from "../../../commons/components/global-component";
 import Utils from "../../../commons/utils";
-import { UserModel } from "../../../commons/models/user.model";
 import { ProjectModel } from "../../../commons/models/project.model";
 
 @Component({
@@ -40,5 +39,18 @@ export class ProjectManagementListingComponent implements OnInit {
 
   redirectToDetail(id: any) {
     this.router.navigateByUrl(this.routing.projectManagementDetail + id);
+  }
+
+  deleteItem(id: any) {
+    /*Swal.fire({
+      title: 'Error!',
+      text: 'Do you want to continue',
+      icon: 'error',
+      confirmButtonText: 'Cool'
+    })*/
+    /*this.projectService.delete(id).subscribe((response: any) => {
+        console.log(response);
+
+    });*/
   }
 }

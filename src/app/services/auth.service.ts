@@ -36,7 +36,7 @@ export class AuthService {
     const path = this.api.url + this.api.path.auth.login;
     return this.httpClient.post(path, data).pipe(
       map((response: any) => {
-        if(response.status===true) {
+        if(response.status === true) {
           this.tokenStorage.saveToken(response.data['api-token']);
           this.isLoggedIn();
         }
@@ -49,10 +49,7 @@ export class AuthService {
     const path = this.api.url + this.api.path.auth.logout;
     return this.httpClient.post(path, []).pipe(
       map((response: any) => {
-        if(response.status===true) {
-          this.tokenStorage.removeToken();
-          this.isLoggedIn();
-        }
+        this.tokenStorage.removeToken();
         return response;
       })
     );
@@ -67,8 +64,9 @@ export class AuthService {
       user.email = response.data.email;
       user.name = response.data.name;
       user.phone = response.data.phone;
-
       this.tokenStorage.saveUser(user);
+
+      return user;
     }));
   }
 }

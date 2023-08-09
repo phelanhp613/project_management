@@ -35,9 +35,15 @@
         </td>
         <td>{{ data.createdAt }}</td>
         <td>{{ data.createdBy }}</td>
-        <td class="text-center">
+        <td class="text-center d-flex">
           <button (click)="redirectToDetail(data.id)" class="btn btn-primary me-2" translate>Detail</button>
-          <a href="#" class="btn btn-danger text-white" translate>Delete</a>
+          <button
+            (click)="deleteItem($event)"
+            class="btn btn-danger text-white"
+            translate
+          >
+            Delete
+          </button>
         </td>
       </tr>
       </tbody>

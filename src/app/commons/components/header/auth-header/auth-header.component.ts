@@ -27,19 +27,19 @@ export class AuthHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.loggedIn = this.authService.isLoggedIn();
     this.authService.checkLoggedIn().subscribe((response: any) => {
-      this.user = this.tokenStorageService.getUser();
+      if(response.isLoggedIn) {
+        this.authService.profile().subscribe((profile: any) => {
+          this.user = profile;
+        });
+      }
       this.loggedIn = response.isLoggedIn;
     });
   }
 
   signOut() {
     this.authService.logout().subscribe((response: any) => {
-      if(response.status) {
-        this.router.navigate([this.route.signIn]);
-        this.notifyService.success(response.message ?? '')
-      } else {
-        this.notifyService.danger(response.message ?? '')
-      }
+      this.notifyService.success('Logged Out Successfully');
+      this.router.navigate([this.route.signIn]);
     });
   }
 }

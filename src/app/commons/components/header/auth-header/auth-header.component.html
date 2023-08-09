@@ -7,6 +7,8 @@
       <li><a href="javascript:" (click)="signOut()" class="dropdown-item">Sign Out</a></li>
     </ul>
   </div>
-  <a [routerLink]="route.signIn" class="me-3" translate="" *ngIf="!loggedIn">Sign In</a>
-  <a [routerLink]="route.signUp" class="btn btn-outline-primary" translate="" *ngIf="!loggedIn">Sign Up</a>
+  <div *ngIf="!loggedIn">
+    <a [routerLink]="route.signIn" class="me-3" translate="">Sign In</a>
+    <a [routerLink]="route.signUp" class="btn btn-outline-primary" translate="">Sign Up</a>
+  </div>
 </div>

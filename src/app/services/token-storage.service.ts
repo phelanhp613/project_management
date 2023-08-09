@@ -16,6 +16,7 @@ export class TokenStorageService {
     return localStorage.getItem(TOKEN_KEY);
   }
   public removeToken(): string | void {
+    localStorage.removeItem(USER_KEY);
     localStorage.removeItem(TOKEN_KEY);
   }
   public saveUser(user: any): void {

@@ -37,4 +37,9 @@ export class ProjectService {
     }));
   }
 
+  delete(id: any) {
+    const path = this.api.url + this.api.path.project.crud + '/' + id;
+    return this.httpClient.delete(path);
+  }
+
 }
