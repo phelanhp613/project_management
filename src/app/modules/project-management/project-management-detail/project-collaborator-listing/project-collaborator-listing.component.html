@@ -1,18 +1,43 @@
-<div>
-  <table class="table table-striped table-responsive w-100">
-    <thead>
-    <tr>
-      <th style="width: 70px">#</th>
-      <th style="width: 250px" translate>Name</th>
-      <th style="width: 250px" translate>Role</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of data; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ item?.user?.name }}</td>
-      <td translate="">{{ item.owner ? "Leader" : "Member" }}</td>
-    </tr>
-    </tbody>
-  </table>
+<h2 class="text-primary mb-3" translate="">Collaborators</h2>
+<hr class="mb-4">
+<div class="w-50 mx-auto">
+  <form
+    (ngSubmit)="onSubmit($event)"
+    #ngForm="ngForm"
+    [formGroup]="formGroup"
+    novalidate
+  >
+    <div class="input-group mb-3">
+      <input [formControlName]="'email'" [ngClass]="{'is-invalid': (formGroup.submitted || formGroup.controls.email.touched) && formGroup.controls.email.errors}" class="form-control" placeholder="{{ 'Invite more member' | translate}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <button type="submit" class="input-group-text btn btn-primary" translate="">Invite</button>
+      <span class="invalid-feedback" *ngIf="(formGroup.submitted || formGroup.controls.email.touched) && formGroup.controls.email.errors">
+        <div *ngIf="formGroup.controls.email.errors['email']" translate="">
+          The email must be a valid email address.
+        </div>
+      </span>
+    </div>
+  </form>
 </div>
+
+<table class="table table-striped table-responsive w-100">
+  <thead>
+  <tr>
+    <th style="width: 70px">#</th>
+    <th style="width: 250px" translate="">Name</th>
+    <th style="width: 250px" translate="">Email</th>
+    <th style="width: 250px" translate="">Role</th>
+    <th style="width: 100px" translate="">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of data; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ item?.user?.name }}</td>
+    <td>{{ item?.user?.email }}</td>
+    <td translate="">{{ item.role }}</td>
+    <td>
+      <button type="button" (click)="onDelete(item?.user?.email)" class="btn btn-danger text-white" *ngIf="item.role !== 'host'" translate="">Remove</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

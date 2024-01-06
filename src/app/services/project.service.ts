@@ -1,22 +1,22 @@
 import { Injectable } from "@angular/core";
-import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { TokenStorageService } from "./token-storage.service";
 import { map } from "rxjs";
-import { UserModel } from "../commons/models/user.model";
+import Utils from "../commons/utils";
+import { LocalStorageService } from "./local-storage.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  api: any = environment.api
+  api: any = Utils.getAPI();
 
   constructor(
     private httpClient: HttpClient,
-    private tokenStorage: TokenStorageService,
+    private localStorage: LocalStorageService,
   ) { }
 
-  getList(params: any, page: any = 1) {
+  getList(params: any = {}, page: any = 1) {
+    params = {...{user_id: this.localStorage.getUser().id}, ...params}
     const data = {
       page: page,
       limit: 20,
@@ -26,11 +26,21 @@ export class ProjectService {
     return this.httpClient.post(path, data).pipe();
   }
 
+  postCreate(data: any) {
+    const path = this.api.url + this.api.path.project.crud;
+    return this.httpClient.post(path, data).pipe();
+  }
+
+  putUpdate(id: any, data: any) {
+    const path = this.api.url + this.api.path.project.crud + `/${id}`;
+    return this.httpClient.put(path, data).pipe();
+  }
+
   getDetail(id: any) {
-    const path = this.api.url + this.api.path.project.listing;
-    return this.httpClient.post(path, {filters: {ids: [id]}}).pipe(map((response: any) => {
+    const path = this.api.url + this.api.path.project.crud + `/${id}`;
+    return this.httpClient.get(path).pipe(map((response: any) => {
       if(response.status) {
-        return response.data.data[0];
+        return response.data;
       }
 
       return [];
@@ -42,4 +52,13 @@ export class ProjectService {
     return this.httpClient.delete(path);
   }
 
+  addCollaborator(data: any) {
+    const path = this.api.url + this.api.path.project.collaborator.add;
+    return this.httpClient.post(path, data).pipe();
+  }
+
+  removeCollaborator(data: any) {
+    const path = this.api.url + this.api.path.project.collaborator.remove;
+    return this.httpClient.post(path, data).pipe();
+  }
 }

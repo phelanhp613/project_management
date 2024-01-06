@@ -14,7 +14,7 @@ $theme-colors: (
 );
 
 $utilities: (
-  'background': (
+  'background-color': (
     property: background-color,
     class: 'bg',
     values: (
@@ -28,92 +28,81 @@ $utilities: (
     property: color,
     class: text,
     values: $theme-colors
-  )
-);
-
-$utilities: map_merge(
-    $utilities,
-    (
-      'text': (
-        property: color,
-        class: 'text',
-        state: hover,
-        values: (
-          primary: $primary,
-          warning: $warning,
-          danger: $danger,
-          info: $info,
-          secondary: $secondary,
-          dark: $dark,
-        ),
-      ),
-    )
-);
-
-$utilities: map_merge(
-    $utilities,
-    (
-      'font-weight': (
-        responsive: true,
-        property: font-weight,
-        class: 'fw',
-        values: (
-          normal: $font-weight-normal,
-          medium: $font-weight-medium,
-          semibold: $font-weight-semi-bold,
-          bold: $font-weight-bold,
-          bolder: $font-weight-bolder,
-        ),
-      ),
-    )
-);
-
-$utilities: map_merge(
-  $utilities,
-  (
-    'object-fit': (
-      property: object-fit,
-      class: o-fit,
-      values: (
-        fill: fill,
-        contain: contain,
-        cover: cover,
-        none: none,
-        scale: scale-down,
-      ),
+  ),
+  'font-weight': (
+    responsive: true,
+    property: font-weight,
+    class: 'fw',
+    values: (
+      normal: $font-weight-normal,
+      medium: $font-weight-medium,
+      semibold: $font-weight-semi-bold,
+      bold: $font-weight-bold,
+      bolder: $font-weight-bolder,
     ),
-  )
+  ),
+  'object-fit': (
+    property: object-fit,
+    class: o-fit,
+    values: (
+      fill: fill,
+      contain: contain,
+      cover: cover,
+      none: none,
+      scale: scale-down,
+    ),
+  ),
+  'width': (
+    property: width,
+    class: w,
+    responsive: true,
+    values: (
+      10: 10%,
+      15: 15%,
+      20: 20%,
+      25: 25%,
+      30: 30%,
+      35: 35%,
+      40: 40%,
+      45: 45%,
+      50: 50%,
+      55: 55%,
+      60: 60%,
+      65: 65%,
+      70: 70%,
+      75: 75%,
+      80: 80%,
+      85: 85%,
+      90: 90%,
+      95: 95%,
+      100: 100%,
+      auto: auto,
+    ),
+  ),
+  'text-truncate': (
+    property: -webkit-line-clamp,
+    class: text-truncate,
+    responsive: true,
+    values: (
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+    ),
+  ),
+  "min-viewport-height": (
+    property: min-height,
+    class: min-vh,
+    values: (100: 100vh)
+  ),
+  'cursor': (
+    property: cursor,
+    class: 'cursor',
+    values: (
+      alias, all-scroll, auto, cell, col-resize, context-menu, copy, crosshair, default, e-resize, ew-resize, grab, grabbing, help, move, n-resize, ne-resize, nesw-resize, ns-resize, nw-resize, nwse-resize, no-drop, none, not-allowed, pointer, progress, row-resize, s-resize, se-resize, sw-resize, text, url, w-resize, wait, zoom-in, zoom-out
+    ),
+  ),
 );
 
-$utilities: map_merge(
-  $utilities,
-  (
-    'width': (
-      property: width,
-      class: w,
-      responsive: true,
-      values: (
-        10: 10%,
-        15: 15%,
-        20: 20%,
-        25: 25%,
-        30: 30%,
-        35: 35%,
-        40: 40%,
-        45: 45%,
-        50: 50%,
-        55: 55%,
-        60: 60%,
-        65: 65%,
-        70: 70%,
-        75: 75%,
-        80: 80%,
-        85: 85%,
-        90: 90%,
-        95: 95%,
-        100: 100%,
-        auto: auto,
-      ),
-    ),
-  )
-);
+

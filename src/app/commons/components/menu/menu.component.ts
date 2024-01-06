@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +10,13 @@ export class MenuComponent implements OnInit {
   @Input() navClass: string | undefined;
   @Input() menu: any;
   @Input() linkClass: any;
+  @Input() liClass: any = 'd-inline-block';
   @Input() scrollTop: any;
   @Input() isMobile: any;
+
   ngOnInit(): void {}
+
+  voidFn() {
+    return true;
+  }
 }

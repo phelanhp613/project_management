@@ -4,8 +4,8 @@
     class="navbar navbar-expand-lg shadow-sm w-100 bg-white py-2"
   >
     <div class="container-fluid">
-      <div class="logo-header">
-        <a [routerLink]="''">
+      <div class="logo-header text-end pe-4">
+        <a [routerLink]="routes.home">
           <ng-container *ngIf="logo != ''">
             <img [src]="logo" alt="logo" class="logo" width="auto" height="auto" />
           </ng-container>
@@ -14,19 +14,19 @@
           </ng-container>
         </a>
       </div>
-      <div class="border-start d-flex align-items-center flex-grow-1 px-3">
+      <div class="border-start d-flex align-items-center flex-grow-1">
         <app-menu
           [ngClass]="''"
           [navClass]="'menu mb-0'"
           [scrollTop]="top"
-          [linkClass]="'text-info-hover'"
-          [menu]="menu"
+          [linkClass]="'text-info-hover fs-xl-3 fs-md-4 fw-semibold px-3'"
+          [menu]="authService.isLoggedIn ? this.menuAuth : this.menuUnAuth"
           [isMobile]="false"
         >
         </app-menu>
       </div>
       <div>
-        <app-auth-header></app-auth-header>
+        <app-auth-group></app-auth-group>
       </div>
     </div>
   </nav>

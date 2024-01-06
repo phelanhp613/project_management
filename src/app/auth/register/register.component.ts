@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from "@angular/fo
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { NotifyService } from "../../commons/components/notify/notify.service";
-import { GlobalComponent } from "../../commons/components/global-component";
+import { GlobalService } from "../../services/global.service";
 
 @Component({
   selector: 'app-register',
@@ -12,18 +12,19 @@ import { GlobalComponent } from "../../commons/components/global-component";
 })
 export class RegisterComponent implements OnInit {
   formGroup: any = FormGroup;
-  btnDisable: any = false;
   submitted: any = false;
   backendErrors: any = [];
   backendSuccess: any = '';
   routing: any;
+  validated: boolean = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private notifyService: NotifyService,
+    private globalService: GlobalService,
   ) {
-    this.routing = GlobalComponent.route;
+    this.routing = globalService.routes;
   }
 
   ngOnInit(): void {
@@ -37,15 +38,17 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(e: any) {
     this.submitted = true;
-    if(this.formGroup.status == 'VALID') {
+    this.validated = this.formGroup.status == 'VALID';
+    if(this.validated) {
+      this.validated = true;
       this.authService.register(this.formGroup.value).subscribe((response: any) => {
         if(response.status == true) {
           this.backendErrors = [];
           this.backendSuccess = "Register successfully";
-          this.btnDisable = true;
           this.router.navigate([this.routing.signIn]);
           this.notifyService.success(this.backendSuccess);
         } else {
+          this.submitted = false;
           this.backendSuccess = "";
           if(response.errors != undefined) {
             this.backendErrors = Object.keys(response.errors).map((key) => {

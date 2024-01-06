@@ -1,53 +1,61 @@
-<div class="project-management-listing container">
-  <div class="d-flex justify-content-between">
-    <div class="breadcrumb">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/" translate>Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page" translate>Project Listing</li>
-        </ol>
-      </nav>
-    </div>
-    <div>
-      <a href="#" class="btn btn-outline-primary">Create <span class="fw-bolder">＋</span></a>
-    </div>
+<div class="d-flex justify-content-between">
+  <div class="breadcrumb">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/" translate>Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page" translate>Project Listing</li>
+      </ol>
+    </nav>
   </div>
   <div>
-    <table class="table table-striped table-responsive w-100">
-      <thead>
-      <tr>
-        <th style="width: 70px">#</th>
-        <th style="width: 250px" translate>Project</th>
-        <th style="width: 200px" translate>Description</th>
-        <th style="width: 200px" translate>Created At</th>
-        <th style="width: 200px" translate>Created By</th>
-        <th class="text-center" style="width: 200px" translate>Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let data of projects; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ data.title }}</td>
-        <td>
-          <span class="d-inline-block text-truncate" style="max-width: 500px;">
-            {{ data.description }}
-          </span>
-        </td>
-        <td>{{ data.createdAt }}</td>
-        <td>{{ data.createdBy }}</td>
-        <td class="text-center d-flex">
-          <button (click)="redirectToDetail(data.id)" class="btn btn-primary me-2" translate>Detail</button>
-          <button
-            (click)="deleteItem($event)"
-            class="btn btn-danger text-white"
-            translate
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <a [routerLink]="routes.project.create" class="btn btn-outline-primary" translate="">Create <span class="fw-bolder">＋</span></a>
   </div>
+</div>
+<div class="table-responsive" *ngIf="projects.length > 0">
+  <table class="table table-striped w-100">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th style="min-width: 200px" translate="">Project</th>
+      <th style="min-width: 70px" class="text-center" translate="">Progress</th>
+      <th style="max-width: 70px" class="text-center" translate="">No. of member</th>
+      <th style="min-width: 150px" translate="">Host</th>
+      <th style="min-width: 150px" translate="">Status</th>
+      <th style="min-width: 150px" translate="">Created At</th>
+      <th style="min-width: 150px" translate="">Created By</th>
+      <th class="text-center" style="min-width: 280px" translate="">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of projects; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>
+        <a [routerLink]="[routes.project.detail, item.id]" class="text-primary fw-semibold" title="{{ item.description }}">{{ item.title }}</a>
+      </td>
+      <td class="text-center">{{ item.progress }}%</td>
+      <td class="text-center">
+        {{ item.collaborators.length }}
+      </td>
+      <td>{{ item.host.name }}</td>
+      <td translate="">
+        <span class="fw-semibold" [ngClass]="{'text-danger': !item.status, 'text-success': item.status} ">{{ item.statusValue }}</span>
+      </td>
+      <td>{{ item.createdAt }}</td>
+      <td>{{ item.createdBy.name }}</td>
+      <td class="text-center">
+        <button [routerLink]="[routes.project.detail, item.id]" class="btn btn-primary" translate="">Detail</button>
+        <button [routerLink]="[routes.project.update, item.id]" class="btn btn-warning" translate="">Update</button>
+        <button
+          (click)="deleteItem(item.id)"
+          class="btn btn-danger text-white"
+          translate=""
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
   <app-pagination [pagination]="paginates"></app-pagination>
 </div>
+<app-empty-data-block [route]="routes.project.create" *ngIf="projects.length === 0" type="project"></app-empty-data-block>

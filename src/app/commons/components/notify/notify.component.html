@@ -3,7 +3,7 @@
     <div *ngFor="let notify of dataSource">
       <div  *ngIf="notify.show">
         <div class="alert alert-{{ notify.type }} alert-dismissible" role="alert">
-          <div>{{ notify.message }}</div>
+          <div translate="">{{ notify.message }}</div>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       </div>

@@ -1,6 +1,8 @@
 @import 'utilities';
+@import 'mixins';
 /* Bootstrap */
 @import "bootstrap/scss/mixins/banner";
+
 @include bsBanner("");
 // Configuration
 @import 'bootstrap/scss/functions';
@@ -59,7 +61,6 @@ $utilities: map-merge(
     )
 );
 @import 'bootstrap/scss/utilities/api';
-
 a {
   text-decoration: none;
   color: inherit;
@@ -68,3 +69,47 @@ a {
 body {
   padding-top: $headerHeight;
 }
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    font-weight: $font-weight-semi-bold;
+  }
+
+  .ng-invalid.ng-touched {
+    @extend .is-invalid;
+  }
+}
+
+.form-control:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.cursor-point {
+  cursor: pointer;
+}
+
+.btn {
+  border-radius: 0;
+
+  &.btn-info, &.btn-success, &.btn-danger, &.btn-primary {
+    color: white !important;
+  }
+
+  &.btn-outline-info, &.btn-outline-success, &.btn-outline-danger, &.btn-outline-primary {
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  white-space: inherit;
+  -webkit-box-orient: vertical;
+}
+

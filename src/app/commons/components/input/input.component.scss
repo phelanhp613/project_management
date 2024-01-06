@@ -1,0 +1,20 @@
+@import "helper";
+
+label::first-letter {
+  text-transform: uppercase
+}
+
+.select-box {
+  .select-arrow {
+    top: 10px;
+    right: 12px;
+    font-size: 12px;
+  }
+
+  &.is-valid, &.is-invalid{
+    .select-arrow {
+      right: 30px;
+    }
+  }
+}
+

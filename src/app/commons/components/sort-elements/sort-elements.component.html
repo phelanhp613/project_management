@@ -1,0 +1,5 @@
+<div cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)">
+  <div class="border p-2 cursor-all-scroll text-primary drop-item fw-semibold" cdkDrag *ngFor="let item of data; let i = index">
+    <span class="text-success">Step {{ i+1 }}:</span> {{item.title}}
+  </div>
+</div>

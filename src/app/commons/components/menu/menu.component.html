@@ -11,11 +11,14 @@
   </li>
 </ul>
 <ul [class]="navClass + ' ps-0'" *ngIf="!isMobile">
-  <li *ngFor="let item of menu" class="d-inline-block ps-lg-3 ps-xl-4">
+  <li *ngFor="let item of menu" [class]="liClass">
     <a
-      [routerLink]="[item.url]"
-      [class]="linkClass + ' fs-xl-3 fs-md-4 fw-semibold'"
-      routerLinkActive="text-primary"><!--[routerLinkActiveOptions]="{ exact: true }"-->
+      [routerLink]="[item?.url]"
+      (click)="(item.callback ?? voidFn)()"
+      [class]="linkClass"
+      routerLinkActive="text-primary"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
       {{ item.label | translate }}
     </a>
   </li>

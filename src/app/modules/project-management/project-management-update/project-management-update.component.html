@@ -1,0 +1,39 @@
+<div class="breadcrumb">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/" translate="">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="routes.project.index" translate="">Project Listing</a></li>
+      <li class="breadcrumb-item active" aria-current="page" translate="">Project Detail</li>
+    </ol>
+  </nav>
+</div>
+<div class="content">
+  <div class="d-flex justify-content-between">
+    <h2 class="project-title">{{ data.title }}</h2>
+    <div>
+      <a [routerLink]="[routes.project.updateWorkRoute, data.id]" class="btn btn-info text-white" translate="">Update Work Route</a>
+      <a [routerLink]="[routes.project.detail, data.id]" fragment="collaborator-listing" class="btn btn-warning" translate="">Add Collaborator</a>
+    </div>
+  </div>
+  <hr>
+  <div class="form-create py-3">
+    <form
+      (ngSubmit)="onSubmit($event)"
+      #ngForm="ngForm"
+      [formGroup]="formGroup"
+      novalidate
+    >
+      <div class="row">
+        <app-input class="col-md-4" [control]="formGroup.get('title')" [error]='errors!["title"]' [validate]="true"></app-input>
+        <app-input class="col-md-4" [control]="formGroup.get('slug')"></app-input>
+        <app-input class="col-md-4" type="select" [control]="formGroup.get('status')" [options]="status"></app-input>
+        <app-input class="col-md-12" type="textarea" rows="10" [control]="formGroup.get('description')"></app-input>
+        <app-input class="col-md-12" type="textarea" rows="10" [control]="formGroup.get('content')"></app-input>
+      </div>
+      <div class="">
+        <button type="submit" class="btn btn-primary me-2" translate="">Save</button>
+        <button type="reset" (click)="ngOnInit()" class="btn btn-default border" translate="">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<label [for]="name" [ngClass]="{'text-danger': checkValidate(true), 'text-success': checkValidate()}" translate="">
+  {{ this.label }} <span class="text-danger" *ngIf="validate">*</span>
+</label>
+<!--Input Text-->
+<input type="text" *ngIf="type === 'text'" [formControl]="control" [ngClass]="{'form-control': true, 'is-valid': checkValidate(), 'is-invalid':  checkValidate(true)}" [id]="id">
+
+<!--Input Password-->
+<input type="password" *ngIf="type === 'password'" [formControl]="control" [ngClass]="{'form-control': true, 'is-valid': checkValidate(), 'is-invalid':  checkValidate(true)}" [id]="id" autocomplete="on">
+
+<!--Text Area-->
+<textarea
+  [rows]="rows"
+  [formControl]="control"
+  [ngClass]="{'form-control': true, 'is-valid': checkValidate(), 'is-invalid':  checkValidate(true)}"
+  [id]="id"
+  *ngIf="type === 'textarea'"
+>
+</textarea>
+
+<div class="position-relative select-box" [ngClass]="{'is-valid': checkValidate(), 'is-invalid':  checkValidate(true)}"  *ngIf="type === 'select'">
+  <span class="position-absolute select-arrow">▼</span>
+  <select [formControl]="control" [ngClass]="{'form-control': true, 'is-valid': checkValidate(), 'is-invalid':  checkValidate(true)}" [id]="id">
+    <option [value]="item.value" *ngFor="let item of options; let value = index">{{ item.text }}</option>
+  </select>
+</div>
+
+<!--Validate Message-->
+<ng-container *ngIf="parent.submitted || control.invalid">
+  <div class="invalid-feedback">
+    <span *ngIf="control.errors?.required" translate="">
+      The {{ name }} field is required.
+    </span>
+    <span *ngIf="control.errors?.email" translate="">
+      The email must be a valid email address.
+    </span>
+    <span *ngIf="control.errors?.minlength" translate="">
+      <span translate="">The {{ name }}</span> <span translate=""> must be at least</span> {{ control.errors!.minlength.requiredLength }} <span translate="">characters</span>.
+    </span>
+  </div>
+</ng-container>
+<ng-container *ngIf="parent.submitted || control.touched">
+  <div class="invalid-feedback d-block">
+    <span *ngIf="error" translate="">
+        {{ error }}
+    </span>
+  </div>
+</ng-container>

@@ -1,0 +1,8 @@
+@import "helper";
+
+:host::ng-deep {
+  .dropdown-menu-auth {
+    left: inherit;
+    right: calPxToRem(-24);
+  }
+}

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ModulesModule } from "./modules/modules.module";
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -17,11 +16,26 @@ const routes: Routes = [
         (m) => m.AuthModule
       ),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./single-page/single-page.module').then(
+        (m) => m.SinglePageModule
+      ),
+  },
+  {path: '**', redirectTo: '404.html'}
 ];
+
+const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  onSameUrlNavigation: 'reload',
+  scrollOffset: [80, 80]
+};
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, routerOptions)
   ],
   exports: [RouterModule]
 })

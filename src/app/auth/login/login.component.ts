@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from "@angular/fo
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { NotifyService } from "../../commons/components/notify/notify.service";
+import { GlobalService } from "../../services/global.service";
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,14 @@ import { NotifyService } from "../../commons/components/notify/notify.service";
 })
 export class LoginComponent implements OnInit {
   formGroup: any = FormGroup;
-  btnDisable: any = false;
-  submitted: any = false;
   backendErrors: any = [];
-  backendSuccess: any = '';
+  submitted: any = false;
+  validated: boolean = true;
 
   constructor(
-    private authService: AuthService,
     private router: Router,
+    private authService: AuthService,
+    private globalService: GlobalService,
     private notifyService: NotifyService,
   ) { }
 
@@ -31,20 +32,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit(e: any) {
     this.submitted = true;
-    this.authService.login(this.formGroup.value).subscribe(
-      (response: any) => {
+    this.validated = this.formGroup.status == 'VALID';
+    if(this.validated) {
+      this.authService.login(this.formGroup.value).subscribe((response: any) => {
         if(response.status) {
-          this.btnDisable = true;
           this.notifyService.success(response.message);
-          /*if(response.data.role) {
-           this.notifyService.success("U are admin");
-           } else {*/
-          this.router.navigate(['']);
-          // }
+          this.router.navigate([this.globalService.routes.dashboard]);
         } else {
           this.backendErrors = [response.message ?? ""];
+          this.submitted = false;
         }
       });
+    }
   }
 
   get formInfo(): {[key: string]: AbstractControl} {

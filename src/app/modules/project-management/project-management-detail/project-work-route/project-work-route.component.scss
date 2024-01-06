@@ -1,6 +1,22 @@
 @import "src/assets/styling/helper";
 
-.step-arrow {
-  transform: rotate(-90deg);
-}
+.work-route-listing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 340px);
+  justify-content: center;
 
+  .step-arrow {
+    transform: rotate(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step {
+    width: 340px;
+    .card {
+      width: 280px;
+      margin-bottom: 40px;
+    }
+  }
+}

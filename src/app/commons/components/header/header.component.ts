@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../services/auth.service";
+import { GlobalService } from "../../../services/global.service";
 
 @Component({
   selector: 'app-header',
@@ -6,14 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  logo: string = '';
-  menu: any = [];
+  logo: string = '/assets/images/personal-logo.png';
+  menuAuth: any = [];
+  menuUnAuth: any = [];
+  routes: any = {};
 
-  constructor() {}
+  constructor(
+    public authService: AuthService,
+    private globalService: GlobalService
+  ) {
+    this.routes = this.globalService.routes;
+
+    this.menuAuth = [
+      { url: this.routes.project.index, label: 'Project Management' },
+    ];
+    this.menuUnAuth = [
+      { url: this.routes.pageNotFound, label: '404' },
+    ];
+  }
 
   public ngOnInit(): void {
-    this.menu = [
-      { url: 'project-management', label: 'Project Management' },
-    ];
   }
 }

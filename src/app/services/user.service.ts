@@ -1,19 +1,19 @@
 import { Injectable } from "@angular/core";
-import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { TokenStorageService } from "./token-storage.service";
-import { map } from "rxjs";
-import { UserModel } from "../commons/models/user.model";
+import Utils from "../commons/utils";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  api: any = environment.api
+  api: any = Utils.getAPI();
 
   constructor(
-    private httpClient: HttpClient,
-    private tokenStorage: TokenStorageService,
+    private httpClient: HttpClient
   ) { }
 
+  update(id: any, data: {}) {
+    const path = this.api.url + this.api.path.user.crud + '/' + id;
+    return this.httpClient.put(path, data).pipe();
+  }
 }

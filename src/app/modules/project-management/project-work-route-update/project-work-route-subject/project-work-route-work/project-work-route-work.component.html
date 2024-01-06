@@ -1,0 +1,48 @@
+<a class="btn btn-outline-primary" data-bs-toggle="modal" href="#update-work-route-work-modal-{{workRoute.id}}" role="button" translate="">Update Works</a>
+<div class="modal fade modal-xl" id="update-work-route-work-modal-{{workRoute.id}}" aria-hidden="true" aria-labelledby="update-work-route-work-modalLabel" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" translate="">Add work route</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form
+          #ngForm="ngForm"
+          (ngSubmit)="onSubmit($event)"
+          [formGroup]="formGroup"
+        >
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th style="width: 50px;">STT</th>
+                <th translate="">Detail</th>
+                <th translate="">Content</th>
+                <th style="width: 100px;" translate="">Progress</th>
+                <th translate="">Note</th>
+                <th translate="">Action</th>
+              </tr>
+              </thead>
+              <tbody [id]="'tbody-'+ workRoute.id" formArrayName="works">
+              <tr *ngFor="let work of formGroup.get('works').controls;  let i=index" [formGroupName]="i">
+                <td>{{i+1}}</td>
+                <td><input type="text" [formControlName]="'content'" class="form-control" placeholder="Detail"></td>
+                <td><input type="text" [formControlName]="'detail'" class="form-control" placeholder="Content"></td>
+                <td><input type="text" [formControlName]="'progress'" class="form-control" placeholder="Progress"></td>
+                <td><input type="text" [formControlName]="'note'" class="form-control" placeholder="Note"></td>
+                <td><button (click)="onDelete(i)" class="btn btn-danger text-white fw-bold">〤</button></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="">
+            <button type="button" class="btn btn-info text-white" (click)="addRecord()">Add More</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

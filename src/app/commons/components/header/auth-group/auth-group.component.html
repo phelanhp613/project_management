@@ -1,0 +1,19 @@
+<div class="border-start d-flex align-items-center px-3 position-relative">
+  <div class="dropdown" *ngIf="authService.isLoggedIn">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {{ authService.auth?.name }}
+    </a>
+    <app-menu
+      [navClass]="'dropdown-menu-auth dropdown-menu shadow-sm'"
+      [liClass]="''"
+      [linkClass]="'dropdown-item'"
+      [menu]="menu"
+      [isMobile]="false"
+    >
+    </app-menu>
+  </div>
+  <div *ngIf="!authService.isLoggedIn">
+    <a [routerLink]="routes.signIn" class="me-3" translate="">Sign In</a>
+    <a [routerLink]="routes.signUp" class="btn btn-outline-primary" translate="">Sign Up</a>
+  </div>
+</div>

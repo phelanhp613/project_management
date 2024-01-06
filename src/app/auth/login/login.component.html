@@ -3,7 +3,6 @@
   <div class="alert alert-danger" role="alert" *ngIf="backendErrors.length > 0">
     <div *ngFor="let errors of backendErrors; let i = index">{{ errors | translate}}</div>
   </div>
-  <div class="alert alert-success" role="alert" *ngIf="backendSuccess.length != ''">{{ backendSuccess | translate }}</div>
   <form
     (ngSubmit)="onSubmit($event)"
     #ngForm="ngForm"
@@ -32,7 +31,7 @@
       </div>
     </div>
     <div class="text-center py-3">
-      <button type="submit" class="btn btn-primary rounded-0 w-100" [disabled]="btnDisable" translate="">Sign In</button>
+      <button type="submit" class="btn btn-primary rounded-0 w-100" [disabled]="validated && submitted" translate="">Sign In</button>
     </div>
     <div>
       <span translate="">Not account yet? </span>

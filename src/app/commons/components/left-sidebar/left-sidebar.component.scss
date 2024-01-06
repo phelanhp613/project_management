@@ -1,13 +1,27 @@
 @import "helper";
 
-.left-sidebar{
-  width: calPxToRem(256);
+.left-sidebar {
+  width: 3.5rem;
+
+  &.show {
+    width: calPxToRem(256) !important;
+
+    .inside {
+      width: calPxToRem(256) !important;
+    }
+  }
+
   .inside {
-    width: calPxToRem(256);
+    width: 3.5rem;
     z-index: $zindex-offcanvas;
+
     .logo {
       height: $headerHeight;
       color: red;
     }
+  }
+
+  a.active {
+    color: $warning !important;
   }
 }

@@ -9,6 +9,8 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from "../environments/environment";
 import { AuthInterceptorProviders } from "./interceptor/auth.interceptor";
+import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,11 @@ import { AuthInterceptorProviders } from "./interceptor/auth.interceptor";
   ],
   imports: [
     BrowserModule,
+    LoadingBarHttpClientModule,
     AppRoutingModule,
-    CommonsModule,
     LoadingBarModule,
     HttpClientModule,
+    CommonsModule,
     TranslateModule.forRoot({
       defaultLanguage: environment.lang,
       loader: {
@@ -31,6 +34,7 @@ import { AuthInterceptorProviders } from "./interceptor/auth.interceptor";
   ],
   providers: [
     AuthInterceptorProviders,
+    provideAnimations()
   ],
   bootstrap: [AppComponent]
 })

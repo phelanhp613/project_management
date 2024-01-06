@@ -38,7 +38,10 @@
                 "src/assets/styling",
                 "./node_modules"
               ]
-            }
+            },
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ]
           },
           "configurations": {
             "production": {

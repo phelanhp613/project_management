@@ -1,0 +1,79 @@
+<div class="breadcrumb">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/" translate="">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="routes.project.index" translate="">Project</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="[routes.project.update, project.id]">{{ project.title }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page" translate="">Work routes</li>
+    </ol>
+  </nav>
+</div>
+<div class="mb-3 d-flex">
+  <a class="btn btn-info text-white" [routerLink]="[routes.project.detail, project.id]" translate="">Detail</a>
+  <!--Add Work Route-->
+  <div *ngIf="isHost">
+    <a class="btn btn-primary" data-bs-toggle="modal" href="#add-more-work-route-modal" role="button" translate="">Add more <span>+</span></a>
+    <div class="modal fade modal-xl" id="add-more-work-route-modal" aria-hidden="true" aria-labelledby="add-more-work-route-modalLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" translate="">Add work route</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <app-project-work-route-subject (dataEmmit)="workRouteDataEmmit($event)" [project]="project" *ngIf="project.id"></app-project-work-route-subject>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Sort Work Route-->
+  <div *ngIf="data.length > 0 && isHost">
+    <a class="btn btn-warning" data-bs-toggle="modal" href="#sort-work-route-modal" role="button" translate="">Sort work routes</a>
+    <div class="modal fade modal-lg" id="sort-work-route-modal" aria-hidden="true" aria-labelledby="sort-work-route-modalLabel" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalToggleLabel" translate="">Sort work routes</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body py-5">
+            <app-sort-elements [data]="data" (dataEmit)="sort($event)"></app-sort-elements>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="py-4" *ngIf="data.length > 0">
+  <h1 class="fs-3" translate="">Work Routes</h1>
+  <hr>
+  <div class="work-route-listing">
+    <div class="work-route-item" *ngFor="let item of data; let i = index">
+      <div class="card">
+        <a class="card-header d-flex justify-content-between align-items-center fw-semibold" data-bs-toggle="collapse" [href]="'#work-route' + item.id" [routerLink]="routes.project.updateWorkRoute + project.id" [fragment]="'work-route' + item.id" aria-expanded="true" [attr.aria-controls]="'work-route' + item.id">
+          <div><span class="text-success">Step {{ i + 1 }}:</span> {{ item.title }}<span> - </span> <span class="text-info"><span translate="">Progress</span>: {{ item.progress }}%</span></div>
+          <button (click)="onDelete(item.id)" class="btn btn-danger text-white fw-bold" *ngIf="isHost">〤</button>
+        </a>
+        <div class="collapse card-body" [ngClass]="{'show': fragment === 'work-route' + item.id}" [id]="'work-route' + item.id">
+          <app-project-work-route-subject [isHost]="isHost" (dataEmmit)="workRouteDataEmmit($event)" [project]="project" [data]="item" *ngIf="project.id" class="mb-4"></app-project-work-route-subject>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
+<div *ngIf="data.length == 0">
+  <div class="d-flex py-5 px-2 justify-content-center align-items-center border border-2 border-danger">
+    <div>
+      <div class="border border-2 border-warning text-center mb-2">
+        <img src="assets/images/guilds/{{globalService.lang}}/guild-add-work-route.png" alt="assets/images/guild-add-work-route.png">
+      </div>
+      <h4 translate="">
+        <span translate="">Click </span>
+        <a class="text-primary" data-bs-toggle="modal" href="#add-more-work-route-modal" role="button" translate="">add more button</a>
+        <span translate=""> to add work route</span>
+      </h4>
+    </div>
+  </div>
+</div>

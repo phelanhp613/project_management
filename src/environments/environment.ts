@@ -1,8 +1,10 @@
 export const environment = {
   production: false,
   lang: 'vn',
+  server: 'local',
   api: {
-    url: 'http://pm-system.hp/api',
+    urlLocal: 'http://pm-system.hp/api',
+    urlProd: 'https://pm-api.vietmasch.com/api',
     path: {
       auth: {
         login: '/auth/login',
@@ -15,7 +17,15 @@ export const environment = {
       },
       project: {
         listing: "/project/listing",
-        crud: "/project"
+        crud: "/project",
+        workRoute: {
+          listing: "/project/work/listing",
+          crud: "/project/work",
+        },
+        collaborator: {
+          add: '/project/collaborator/add',
+          remove: '/project/collaborator/remove'
+        }
       }
     },
   },

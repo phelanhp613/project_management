@@ -1,44 +1,63 @@
-<div class="project-management-detail container">
-  <div class="breadcrumb">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/" translate="">Home</a></li>
-        <li class="breadcrumb-item"><a [routerLink]="'/project-management'" translate="">Project Listing</a></li>
-        <li class="breadcrumb-item active" aria-current="page" translate="">Project Detail</li>
-      </ol>
-    </nav>
-  </div>
-  <div class="content">
-    <h2 class="project-title">{{ data.title }}</h2>
-    <div class="project-progress py-3">
-      <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Example with label" style="width: {{ data.progress ?? 0 }}%;" aria-valuemin="0" aria-valuemax="100">{{ data.progress ?? 100 }}%</div>
-      </div>
-    </div>
-    <hr>
+<div class="breadcrumb">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/" translate="">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="routes.project.index" translate="">Project Listing</a></li>
+      <li class="breadcrumb-item active" aria-current="page" translate="">Project Detail</li>
+    </ol>
+  </nav>
+</div>
+<div class="content">
+  <div class="d-flex justify-content-between">
+    <h1 class="project-title">{{ data.title }}</h1>
     <div>
-      <ul class="nav nav-pills mb-3" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="work-route-tab" data-bs-toggle="pill" data-bs-target="#work-route" type="button" role="tab" aria-controls="work-route" aria-selected="true" translate="">Work Route</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="collaborator-listing-tab" data-bs-toggle="pill" data-bs-target="#collaborator-listing" type="button" role="tab" aria-controls="collaborator-listing" aria-selected="false" translate="">Collaborators</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="description-tab" data-bs-toggle="pill" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false" translate="">Description</button>
-        </li>
-      </ul>
-      <div class="tab-content" id="project-detail-tab-content">
-        <div id="work-route" class="tab-pane fade show active" role="tabpanel" aria-labelledby="work-route-tab">
-          <app-project-work-route></app-project-work-route>
-        </div>
-        <div id="collaborator-listing" class="tab-pane fade" role="tabpanel" aria-labelledby="collaborator-listing-tab">
-          <app-project-collaborator-listing [data]="data.collaborators ?? []"></app-project-collaborator-listing>
-        </div>
-        <div id="description" class="tab-pane fade" role="tabpanel" aria-labelledby="description-tab">
-          <h3 class="text-primary" translate="">Description</h3>
-          <div class="content">
-            {{ data.description }}
+      <a [routerLink]="[routes.project.updateWorkRoute, data.id]" class="btn btn-info text-white" translate="">Update Work Route</a>
+      <a [routerLink]="[routes.project.update, data.id]" class="btn btn-warning" translate="">Update</a>
+    </div>
+  </div>
+  <div class="project-progress py-3">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Example with label" [style]="{ width: progress + '%'}" aria-valuemin="0" aria-valuemax="100">{{ progress }}%</div>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <ul class="nav nav-pills mb-3" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active fw-semibold" id="work-route-tab" data-bs-toggle="pill" data-bs-target="#work-route" type="button" role="tab" aria-controls="work-route" aria-selected="true" translate="">Work Route</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link fw-semibold" id="collaborator-listing-tab" data-bs-toggle="pill" data-bs-target="#collaborator-listing" type="button" role="tab" aria-controls="collaborator-listing" aria-selected="false" translate="">Collaborators</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link fw-semibold" id="general-tab" data-bs-toggle="pill" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="false" translate="">General</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="project-detail-tab-content">
+      <div id="work-route" class="tab-pane fade show active" role="tabpanel" aria-labelledby="work-route-tab">
+        <app-project-work-route [project]="data" *ngIf="data.sortWorks && data.sortWorks.length > 0"></app-project-work-route>
+        <app-empty-data-block [route]="[routes.project.updateWorkRoute, data.id]" *ngIf="data.sortWorks && data.sortWorks.length === 0" type="work route"></app-empty-data-block>
+      </div>
+      <div id="collaborator-listing" class="tab-pane fade" role="tabpanel" aria-labelledby="collaborator-listing-tab">
+        <app-project-collaborator-listing [data]="data.collaborators ?? []" [projectID]="data.id"></app-project-collaborator-listing>
+      </div>
+      <div id="general" class="tab-pane fade" role="tabpanel" aria-labelledby="general-tab">
+        <h2 class="text-primary" translate="">General</h2>
+        <hr>
+        <div class="tab-content-general">
+          <div class="mb-4">
+            <div><span class="fw-semibold" translate="">Created At</span>: {{ data.createdAt }}</div>
+            <div><span class="fw-semibold" translate="">Created By</span>: {{ data.createdBy?.name }}</div>
+            <div><span class="fw-semibold" translate="">Number of member</span>: {{ data.collaborators?.length }}</div>
+            <div><span class="fw-semibold" translate="">Host</span>: {{ data.host?.name }}</div>
+          </div>
+          <div class="description mb-4">
+            <h4><span translate="">Description</span></h4>
+            <div>{{ data.description}}</div>
+          </div>
+          <div class="content mb-4">
+            <h4><span translate="">Content</span></h4>
+            <div [innerHTML]="data.content"></div>
           </div>
         </div>
       </div>

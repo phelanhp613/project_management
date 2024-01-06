@@ -1,0 +1,22 @@
+<form
+  (ngSubmit)="onSubmit($event)"
+  #ngForm="ngForm"
+  [formGroup]="formGroup"
+  novalidate
+>
+  <app-progress-bar [progress]="data.progress" *ngIf="data.id"></app-progress-bar>
+  <div class="row">
+    <app-input [control]="formGroup.get('title')" [validate]="true" label="Title" class="col-md-6"></app-input>
+    <app-input [control]="formGroup.get('status')" [type]="'select'" [validate]="true" [options]="status" label="Status" class="col-md-3"></app-input>
+    <app-input [control]="formGroup.get('user_id')" [type]="'select'" [options]="collaborators" label="Assign for" class="col-md-3"></app-input>
+    <app-input [control]="formGroup.get('description')" [type]="'textarea'" label="Description" rows="6" class="col-md-6"></app-input>
+    <app-input [control]="formGroup.get('content')" [type]="'textarea'" label="Content" rows="6" class="col-md-6"></app-input>
+  </div>
+  <div class="d-flex justify-content-between">
+    <app-project-work-route-work (dataEmmit)="updateProgress($event)" [workRoute]="data" *ngIf="data.id && (owner || isHost)"></app-project-work-route-work>
+    <div class="ms-auto" *ngIf="(owner || isHost)">
+      <button type="submit" class="btn btn-primary" [attr.data-bs-dismiss]="(formGroup.valid && !data.id) ? 'modal' : false">Save</button>
+      <button type="button" (click)="onDelete(data.id)" class="btn btn-danger text-white" *ngIf="data.id">Delete</button>
+    </div>
+  </div>
+</form>
